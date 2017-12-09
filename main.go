@@ -1,6 +1,7 @@
 package main
 
 import (
+<<<<<<< HEAD
         "fmt"
         "github.com/gorilla/mux"
         mgo "gopkg.in/mgo.v2"
