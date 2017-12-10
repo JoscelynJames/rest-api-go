@@ -24,7 +24,17 @@ func NewCoordHandler(session *mgo.Session) *CoordHandler {
 }
 
 func (ch CoordHandler) AllCoords(w http.ResponseWriter, r *http.Request) {
-        // json.NewEncoder(w).Encode(coordinates)
+        var results []models.Coordinate
+
+        if err := ch.session.DB("wheres-my-bird-db").C("coordinates").Find(nil).All(&results); err != nil {
+                w.WriteHeader(404)
+                return
+        }
+
+        // write content-type, status code payload
+        w.Header().Set("Content-Type", "application/json")
+        w.WriteHeader(200)
+        json.NewEncoder(w).Encode(results)
 }
 
 func (ch CoordHandler) CreateCoord(w http.ResponseWriter, r *http.Request) {
