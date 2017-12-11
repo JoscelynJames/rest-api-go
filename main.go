@@ -33,5 +33,5 @@ func main() {
 	router.HandleFunc("/coords", ch.AllCoords).Methods("GET")
 	router.HandleFunc("/coord", ch.CreateCoord).Methods("POST")
 
-	log.Fatal(http.ListenAndServe(":8080", router))
+	log.Fatal(http.ListenAndServe(":" + os.Getenv("PORT"), router))
 }
