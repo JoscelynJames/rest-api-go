@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	"os"
 	"github.com/gorilla/mux"
 	mgo "gopkg.in/mgo.v2"
 	"log"
@@ -14,12 +14,11 @@ var db *mgo.Session
 
 func getSession() *mgo.Session {
 	// Connect to our local mongo
-	db, err := mgo.Dial("mongodb://localhost")
+	db, err := mgo.Dial(os.Getenv("PROD_MONGODB"))
 	// Check if connection error, is mongo running?
 	if err != nil {
 		panic(err)
 	}
-	fmt.Print("Connected to mongo")
 	return db
 }
 
