@@ -6,7 +6,6 @@ import (
 	mgo "gopkg.in/mgo.v2"
 	"log"
 	"net/http"
-	//future use
 	"github.com/joscelynjames/rest-api/handlers"
 )
 
